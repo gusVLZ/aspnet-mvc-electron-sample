@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Be.Models.Filme>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Index">Voltar para Filmes</a>
+</p>
+
+
+<div class="row">
+@foreach (var item in Model)
+{
+    <div class="col-3 m-2 card">
+        <div class="card-body">
+            <h3 class="card-title"> @Html.DisplayFor(modelItem => item.Nome) </h3>
+            <strong>@Html.DisplayNameFor(model=>model.Descricao):</strong>@Html.DisplayFor(modelItem=>item.Descricao) <br />
+            <strong>@Html.DisplayNameFor(model=>model.AnoLancamento):</strong>@Html.DisplayFor(modelItem=>item.AnoLancamento) <br />
+        </div>
+    </div>
+}
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnoLancamento)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnoLancamento)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
